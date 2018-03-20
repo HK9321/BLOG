@@ -1,0 +1,30 @@
+
+{% extends 'common/base.html' %}
+{#{% load static %}#}
+
+{% block content %}
+    <div class="container">
+    {% block page_content %}
+        <h2>{{ user.username }}信息：</h2>
+            <h4>性别：{% if user.sex == True %}
+                男
+                {% else %}
+                女
+            {% endif %}
+        </h4>
+            <h4>年龄：{{ user.age }}</h4>
+            <h4>邮箱：{{ user.email }}</h4>
+            <h4>{{ user.createTime}}来到本网站</h4>
+
+        <h2>他发表的帖子：</h2>
+            {% for post_title in post_titles%}
+                <h4><a href="">{{ post_title }}</a></h4>
+            {% endfor %}
+
+        <img src='{{ user.icon.url }}' />
+
+
+    {% endblock %}
+    </div>
+{% endblock %}
+

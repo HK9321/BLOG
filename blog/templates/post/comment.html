@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>我是帖子回复页面</h3>
+<div>
+    {% for name,comment in name_comment %}
+        <div style="border: 1px orange solid">
+        {% if comment.parent.comment_text != Null %}
+             回复： {{ comment.parent.comment_text }}
+        {% endif %}
+
+            <h3>{{ name }}说: {{ comment.create_time }}</h3>
+            <h4 style="margin-left: 50px">{{ comment.comment_text }} </h4>
+            <p style="font-size: 10px;color: orange ;width: 30px" class="preply">回复</p>
+
+            <div class="reply" style="display: ">
+                <form class="pure-form" action="{% url 'post:reply' post %}?parent={{ comment.id }}  " method="post">
+                    {% csrf_token %}
+                    <input id="reply" class="pure-input-1-5" type="text" name="commet_text" placeholder="说说您的看法吧">
+                    <button type="submit" class=" pure-button pure-button-primary">回复</button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

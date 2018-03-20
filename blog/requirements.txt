@@ -1,0 +1,7 @@
+Django==1.11.8
+django-redis==4.8.0
+olefile==0.44
+Pillow==4.3.0
+PyMySQL==0.7.11
+pytz==2017.3
+redis==2.10.6

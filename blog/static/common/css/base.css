@@ -1,0 +1,11 @@
+html, body{
+    padding: 0;
+    margin: 0;
+}
+
+#onlineusernum{
+    padding-top: 100px;
+    display: block;
+    text-align: center;
+    font-size: large;
+}

@@ -1,0 +1,15 @@
+{% extends 'common/base.html' %}
+
+{% block page_content %}
+    <a style="float: right" href="{% url "post:deletepost" artical.id %}">删除</a>
+    <h1>{{ artical.title }}</h1>
+    <h3>{{ artical.content }}</h3>
+    <form method="post" action="{% url "post:reply" artical.id %}">
+    {% csrf_token %}    
+        <textarea class="form-control" rows="3" name="commet_text"></textarea>
+        <p></p>
+        <button type="submit" class="btn btn-default">发表评论</button>
+    </form>
+    <p></p>
+    <a style="margin-top: 20px" href="{% url "post:comment" artical.id %}">查看文章评论</a>
+{% endblock %}

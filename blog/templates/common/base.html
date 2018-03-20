@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "common/css/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "common/css/base.css" %}">
+    {% block styles %}
+    {% endblock %}
+</head>
+<body>
+{% block navbar %}
+    <nav class="navbar navbar-inverse" style="'border-radius:0px;">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target=".navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url "post:index" %}">博客首页</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" >
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url "post:publish" %}">发帖</a></li>
+                    <li><a href="#">版块二</a></li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="关键字">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if request.session.user111 %}
+{#                        {{ request.session.username }}，您好！#}
+                         <li><a href="#">退出</a></li>
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">{{ request.session.username }}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">发表文章</a></li>
+                            <li><a href="#">修改信息</a></li>
+                            <li><a href="#">Something else here</a></li>
+{#                            <li role="separator" class="divider"></li>#}
+{#                            <li><a href="#">Separated link</a></li>#}
+{#                        </ul>#}
+                    </li>
+                    {% else %}
+                        <li><a href="#">登录</a></li>
+                        <li><a href="#">注册</a></li>
+                    {% endif %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    {% block page_content %}
+        <h1>默认内容</h1>
+
+    {% endblock %}
+    </div>
+{% endblock %}
+<script src="{% static "common/js/jquery-3.2.1.js" %}"></script>
+<script src="{% static "common/js/bootstrap.js" %}"></script>
+<p  id="onlineusernum">当前在线人数：{{ request.online_user_num }}</p>
+{% block scripts %}
+{% endblock %}
+
+</body>
+</html>
